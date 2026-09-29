@@ -1,0 +1,10 @@
+path: /Users/omlodha/Desktop/onionSIH/ml/dataset
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 3
+names:
+  0: Damaged
+  1: Rotten
+  2: Sprouted

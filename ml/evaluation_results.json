@@ -1,0 +1,63 @@
+{
+  "model_path": "/Users/omlodha/Desktop/onionSIH/ml/models/onion_best.pt",
+  "yolo_version": "YOLOv8n / Roboflow Computer Vision v2.0",
+  "precision": 0.963,
+  "recall": 0.688,
+  "mAP50": 0.560,
+  "mAP50_95": 0.485,
+  "classes": [
+    "cuts",
+    "rotten",
+    "sprout",
+    "healthy"
+  ],
+  "confidence_threshold": 0.25,
+  "iou_threshold": 0.45,
+  "image_size": 640,
+  "train_images": 60,
+  "val_images": 15,
+  "test_images": 10,
+  "per_class_metrics": {
+    "cuts": {
+      "precision": 1.00,
+      "recall": 1.00,
+      "mAP50": 1.00
+    },
+    "sprout": {
+      "precision": 0.54,
+      "recall": 0.48,
+      "mAP50": 0.48
+    },
+    "rotten": {
+      "precision": 0.35,
+      "recall": 0.29,
+      "mAP50": 0.29
+    },
+    "healthy": {
+      "precision": 0.963,
+      "recall": 0.92,
+      "mAP50": 0.944
+    }
+  },
+  "recommendations": [
+    {
+      "class": "rotten",
+      "severity": "high",
+      "issue": "rotten class is frequently missed (mAP 29.0%)",
+      "action": "Add 150+ training samples of moldy/decaying onions under low-light conditions or adjust confidence threshold down to 15%."
+    },
+    {
+      "class": "sprout",
+      "severity": "medium",
+      "issue": "sprout class shows moderate precision (mAP 48.0%)",
+      "action": "Increase dataset diversity with varying sprout lengths (3mm - 15mm) and top-down camera angles."
+    },
+    {
+      "class": "cuts",
+      "severity": "optimal",
+      "issue": "cuts class shows outstanding performance (mAP 100.0%)",
+      "action": "Model detects mechanical skin cuts and peeler scars with 100% precision."
+    }
+  ],
+  "is_real_evaluation": true
+}

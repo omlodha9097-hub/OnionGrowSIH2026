@@ -1,0 +1,19 @@
+{
+  "settings_version": "0.0.8",
+  "datasets_dir": "/Users/omlodha/Desktop/onionSIH/ml/datasets",
+  "weights_dir": "weights",
+  "runs_dir": "runs",
+  "uuid": "c568224fcb9dd3be07b68728444f5ed27d1ad183c94ac8d5bf92abfad81b6d32",
+  "sync": true,
+  "api_key": "",
+  "openai_api_key": "",
+  "clearml": true,
+  "comet": true,
+  "dvc": true,
+  "mlflow": true,
+  "raytune": true,
+  "tensorboard": false,
+  "wandb": false,
+  "vscode_msg": true,
+  "openvino_msg": true
+}

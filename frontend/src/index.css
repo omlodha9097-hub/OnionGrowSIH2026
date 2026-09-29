@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#F8FAFC] dark:bg-[#0B0F17] text-slate-900 dark:text-slate-100 font-sans antialiased overflow-x-hidden transition-colors duration-200;
+  }
+}
+
+/* Glassmorphism & Surface Utility Classes */
+.glass-panel {
+  @apply bg-white dark:bg-[#1E293B] backdrop-blur-xl border border-slate-200 dark:border-[#581C87]/40 shadow-sm transition-colors duration-200;
+}
+
+.glass-card {
+  @apply bg-white dark:bg-[#1E293B]/90 backdrop-blur-md border border-slate-200 dark:border-[#581C87]/40 shadow-sm hover:shadow-md transition-all duration-200;
+}
+
+.glass-card:hover {
+  @apply border-[#064E3B] dark:border-[#059669]/60;
+}
+
+/* OnionGrade AI Two-Tone Dark Green & Dark Purple Gradients */
+.onion-gradient-text {
+  background: linear-gradient(135deg, #064E3B 0%, #581C87 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gov-gradient-text {
+  background: linear-gradient(135deg, #064E3B 0%, #4A1525 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-100 dark:bg-[#0B0F17];
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-[#059669]/40 dark:bg-[#581C87]/60 rounded-md;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-[#059669] dark:bg-[#581C87];
+}
+
+/* Print Styles for Certificate PDF Generation */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-report, #printable-report * {
+    visibility: visible;
+  }
+  #printable-report {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: white !important;
+    color: black !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  #printable-report h2, #printable-report h3, #printable-report strong, #printable-report p, #printable-report span {
+    color: black !important;
+  }
+}
