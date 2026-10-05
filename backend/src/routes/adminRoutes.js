@@ -9,10 +9,10 @@ const { isMongoConnected, memoryStore } = require('../services/dbFallback');
  * PATCH /api/v1/admin/verify-batch/:batchId
  * Allows Procurement Officer to verify/override grade & trigger MSP payout
  */
-router.patch('/verify-batch/:batchId', async (req, res) => {
+const handleVerifyBatch = async (req, res) => {
   try {
     const { batchId } = req.params;
-    const { overrideGrade, inspectorNotes, status = 'Approved' } = req.body;
+    const { overrideGrade, assignedGrade, inspectorNotes, notes, status = 'Approved' } = req.body;
 
     let targetBatch = null;
 
@@ -26,10 +26,10 @@ router.patch('/verify-batch/:batchId', async (req, res) => {
       return res.status(404).json({ success: false, message: 'Batch not found' });
     }
 
-    const finalGrade = overrideGrade || targetBatch.aiAnalysisResult.finalAssignedGrade;
+    const finalGrade = overrideGrade || assignedGrade || targetBatch.aiAnalysisResult.finalAssignedGrade;
     targetBatch.aiAnalysisResult.finalAssignedGrade = finalGrade;
     targetBatch.status = status;
-    if (inspectorNotes) targetBatch.inspectorNotes = inspectorNotes;
+    if (inspectorNotes || notes) targetBatch.inspectorNotes = inspectorNotes || notes;
 
     // Trigger MSP/DBT Payout calculation if approved
     if (status === 'Approved' || status === 'Paid') {
@@ -52,7 +52,11 @@ router.patch('/verify-batch/:batchId', async (req, res) => {
   } catch (err) {
     return res.status(500).json({ success: false, error: err.message });
   }
-});
+};
+
+router.patch('/verify-batch/:batchId', handleVerifyBatch);
+router.post('/verify-batch/:batchId', handleVerifyBatch);
+router.post('/batches/:batchId/override', handleVerifyBatch);
 
 /**
  * GET /api/v1/admin/analytics

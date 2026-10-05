@@ -40,7 +40,7 @@ export const ModelInfoPage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetch('http://localhost:5001/api/model-info')
+    fetch('/api/model-info')
       .then(res => res.json())
       .then(json => {
         setData(json);

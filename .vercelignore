@@ -1,0 +1,6 @@
+ai-service/
+mobile/
+ml/
+runs/
+.git/
+node_modules/

@@ -219,11 +219,8 @@ router.post('/book', (req, res) => {
   }
 });
 
-/**
- * GET /api/v1/slots/my-bookings
- */
-router.get('/my-bookings', (req, res) => {
-  const { farmerId = 'FARM_101' } = req.query;
+const handleMyBookings = (req, res) => {
+  const farmerId = req.params.farmerId || req.query.farmerId || 'FARM_101';
   const list = Array.from(memoryStore.slotBookings.values())
     .filter(b => b.farmerId === farmerId || !b.farmerId)
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
@@ -233,6 +230,9 @@ router.get('/my-bookings', (req, res) => {
     count: list.length,
     bookings: list
   });
-});
+};
+
+router.get('/my-bookings', handleMyBookings);
+router.get('/my-bookings/:farmerId', handleMyBookings);
 
 module.exports = router;
